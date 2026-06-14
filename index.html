@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raízes do Nordeste – Protótipo Front-End</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV SUPERIOR -->
+<nav class="nav-top">
+  <div class="logo"> Raízes</div>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="irPara('login')">Login</button>
+    <button class="nav-btn" onclick="irPara('cardapio')">Cardápio</button>
+    <button class="nav-btn" onclick="irPara('pedido')">Pedido</button>
+    <button class="nav-btn" onclick="irPara('status')">Status</button>
+    <button class="nav-btn" onclick="irPara('fidelidade')">Fidelidade</button>
+    <button class="nav-btn" onclick="irPara('totem')">Totem</button>
+  </div>
+</nav>
+<div class="app-container"> 
+  
+  <!-- ===== TELA 1: LOGIN / CADASTRO ===== -->
+  <div id="tela-login" class="tela ativa">
+    <h1 class="tela-titulo">Bem-vindo(a)!</h1>
+    <p class="tela-sub">Entre ou crie sua conta para pedir com facilidade.</p>
+    <div class="auth-wrapper"> 
+      
+      <!-- Login -->
+      <div class="auth-card">
+        <h2>Entrar</h2>
+        <div class="form-group">
+          <label>E-mail</label>
+          <input id="login-email" type="email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <input id="login-senha" type="password" placeholder="••••••••">
+        </div>
+        <button class="btn-primario" onclick="tentarLogin()">Entrar na conta</button>
+        <button class="btn-primario" style="background:var(--bege2);color:var(--verde);margin-top:8px;" onclick="irPara('cardapio')">Continuar sem conta</button>
+      </div>
+      
+      <!-- Cadastro -->
+      <div class="auth-card">
+        <h2>Criar Conta</h2>
+        <div class="form-group">
+          <label>Nome completo</label>
+          <input id="cad-nome" type="text" placeholder="João da Silva" required>
+        </div>
+        <div class="form-group">
+          <label>E-mail</label>
+          <input id="cad-email" type="email" placeholder="seu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>CPF</label>
+          <input id="cad-cpf" type="text" placeholder="000.000.000-00" required>
+        </div>
+        <div class="form-group">
+          <label>Telefone</label>
+          <input id="cad-tel" type="text" placeholder="(11) 90000-0000" required>
+        </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <input id="cad-senha" type="password" placeholder="Mín. 8 caracteres" required>
+        </div>
+        <!-- LGPD -->
+        <div class="lgpd-box"> <strong> Privacidade (LGPD)</strong> Seus dados são usados apenas para gerenciar seu pedido e programa de fidelidade.
+          <div class="lgpd-check">
+            <input type="checkbox" id="lgpd1" onchange="verificarCadastro()">
+            <label for="lgpd1">Li e aceito a <a href="#" style="color:var(--verde);" onclick="event.preventDefault(); abrirModalPrivacidade()">Política de Privacidade</a></label>
+          </div>
+          <div class="lgpd-check">
+            <input type="checkbox" id="lgpd2">
+            <label for="lgpd2">Aceito receber promoções por e-mail (opcional)</label>
+          </div>
+        </div>
+        <button id="btn-cadastrar" class="btn-primario" style="margin-top:14px;" onclick="tentarCadastrar()">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ===== TELA 2: CARDÁPIO ===== -->
+  <div id="tela-cardapio" class="tela">
+    <h1 class="tela-titulo">Cardápio</h1>
+    
+    <!-- Seleção de Unidade -->
+    <p style="font-size:0.85rem;color:var(--cinza);margin-bottom:8px;">Selecione sua unidade:</p>
+    <div class="unidade-sel">
+      <button class="unidade-btn sel" onclick="selUnidade(this)"> Fortaleza – Centro</button>
+      <button class="unidade-btn" onclick="selUnidade(this)"> Recife – Boa Viagem</button>
+      <button class="unidade-btn" onclick="selUnidade(this)"> Salvador – Barra</button>
+      <button class="unidade-btn" onclick="selUnidade(this)"> João Pessoa</button>
+    </div>
+    
+    <!-- Banner Promoção -->
+    <div class="promo-banner"> Combo Nordestino com 20% OFF hoje! <span class="tag">PROMO</span> </div>
+    <div class="categoria-label"> Lanches</div>
+    <div class="cardapio-grid">
+      <div class="produto-card">
+        <div class="produto-img">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="13" rx="9" ry="5"/>
+            <path d="M3 13c0-3 4-7 9-7s9 4 9 7"/>
+            <line x1="8" y1="9" x2="8" y2="17"/>
+            <line x1="12" y1="7" x2="12" y2="18"/>
+            <line x1="16" y1="9" x2="16" y2="17"/>
+          </svg>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Tapioca da Serra</div>
+          <div class="produto-preco">R$ 14,90</div>
+          <button class="produto-add" onclick="addCarrinho('Tapioca da Serra', 14.90)">+ Adicionar</button>
+        </div>
+      </div>
+      <div class="produto-card">
+        <div class="produto-img">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 13h16"/>
+            <path d="M4 17h16"/>
+            <path d="M6 9c0-2.2 2.7-4 6-4s6 1.8 6 4H6z"/>
+            <rect x="3" y="17" width="18" height="3" rx="1.5"/>
+          </svg>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Baião Burger</div>
+          <div class="produto-preco">R$ 22,90</div>
+          <button class="produto-add" onclick="addCarrinho('Baião Burger', 22.90)">+ Adicionar</button>
+        </div>
+      </div>
+      <div class="produto-card">
+        <div class="produto-img">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3C7 3 4 7 4 12l4 9h8l4-9c0-5-3-9-8-9z"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+            <line x1="9" y1="9" x2="15" y2="9"/>
+          </svg>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Carne de Sol Wrap</div>
+          <div class="produto-preco">R$ 19,90</div>
+          <button class="produto-add" onclick="addCarrinho('Carne de Sol Wrap', 19.90)">+ Adicionar</button>
+        </div>
+      </div>
+      <div class="produto-card">
+        <div class="produto-img">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="8" rx="2"/>
+            <path d="M7 11V8a2 2 0 114 0v3"/>
+            <path d="M13 11V7a2 2 0 114 0v4"/>
+            <line x1="9" y1="15" x2="9" y2="17"/>
+            <line x1="12" y1="15" x2="12" y2="17"/>
+            <line x1="15" y1="15" x2="15" y2="17"/>
+          </svg>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Macaxeira Frita</div>
+          <div class="produto-preco">R$ 11,90</div>
+          <button class="produto-add" onclick="addCarrinho('Macaxeira Frita', 11.90)">+ Adicionar</button>
+        </div>
+      </div>
+    </div>
+    <div class="categoria-label"> Bebidas</div>
+    <div class="cardapio-grid">
+      <div class="produto-card">
+        <div class="produto-img">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2h8l1 6H7L8 2z"/>
+            <path d="M7 8l1 13h8l1-13"/>
+            <line x1="10" y1="12" x2="14" y2="12"/>
+          </svg>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Suco de Umbú</div>
+          <div class="produto-preco">R$ 8,90</div>
+          <button class="produto-add" onclick="addCarrinho('Suco de Umbú', 8.90)">+ Adicionar</button>
+        </div>
+      </div>
+      <div class="produto-card">
+        <div class="produto-img">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2c-1 3-4 4-4 8a4 4 0 008 0c0-4-3-5-4-8z"/>
+            <line x1="12" y1="14" x2="12" y2="22"/>
+            <line x1="9" y1="22" x2="15" y2="22"/>
+          </svg>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Água de Coco</div>
+          <div class="produto-preco">R$ 7,90</div>
+          <button class="produto-add" onclick="addCarrinho('Água de Coco', 7.90)">+ Adicionar</button>
+        </div>
+      </div>
+    </div>
+    <div class="carrinho-flutuante" onclick="irPara('pedido')"> <span> Ver carrinho</span> <span class="badge" id="badge-qtd">0 itens · R$ 0,00</span> </div>
+  </div>
+  
+  <!-- ===== TELA 3: PEDIDO / CARRINHO ===== -->
+  <div id="tela-pedido" class="tela">
+    <h1 class="tela-titulo">Seu Pedido</h1>
+    <p class="tela-sub">Revise os itens antes de confirmar.</p>
+    <div class="pedido-lista" id="pedido-lista">
+      <p style="color:var(--cinza);text-align:center;padding:20px;">Nenhum item no carrinho. <a href="#" onclick="irPara('cardapio')" style="color:var(--verde);">Ver cardápio</a></p>
+    </div>
+    <div class="pedido-resumo" id="pedido-resumo" style="display:none;">
+      <div class="linha"><span>Subtotal</span><span id="sub-total">R$ 0,00</span></div>
+      <div class="linha"><span>Taxa de entrega</span><span>R$ 4,99</span></div>
+      <div class="linha"><span>Desconto fidelidade</span><span style="color:var(--verde);">- R$ 5,00</span></div>
+      <div class="linha total"><span>Total</span><span id="total-final">R$ 0,00</span></div>
+    </div>
+    <div id="forma-pag-wrap" style="display:none;">
+      <p style="font-weight:700;margin-bottom:10px;color:var(--texto);">Forma de pagamento:</p>
+      <div class="forma-pag">
+        <button class="pag-btn sel" onclick="selPag(this)"> Cartão</button>
+        <button class="pag-btn" onclick="selPag(this)"> Pix</button>
+        <button class="pag-btn" onclick="selPag(this)"> Dinheiro</button>
+        <button class="pag-btn" onclick="selPag(this)"> VR/VA</button>
+      </div>
+      <button class="btn-primario" onclick="processarPagamento()"> Confirmar Pedido</button>
+      <p style="font-size:0.78rem;color:var(--cinza);text-align:center;margin-top:8px;">Pagamento processado por serviço externo seguro (PCI-DSS)</p>
+    </div>
+  </div>
+  
+  <!-- ===== TELA 4: STATUS DO PEDIDO ===== -->
+  <div id="tela-status" class="tela">
+    <h1 class="tela-titulo">Status do Pedido</h1>
+    <div class="status-card">
+      <div class="status-numero">Pedido <strong>#RDN-20483</strong></div>
+      <p style="font-size:0.85rem;color:var(--cinza);margin-bottom:4px;">Fortaleza – Centro · 18/04/2026 14:32</p>
+      <div class="progress-steps">
+        <div class="progress-line"></div>
+        <div class="progress-fill" id="prog-fill" style="height:66%;"></div>
+        <div class="step done">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <polyline points="9 13 11 15 15 11"/>
+            </svg>
+          </div>
+          <div class="step-texto">
+            <h4>Pedido Recebido</h4>
+            <p>14:32 – Confirmado com sucesso</p>
+          </div>
+        </div>
+        <div class="step done">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2"/>
+              <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+          </div>
+          <div class="step-texto">
+            <h4>Pagamento Aprovado</h4>
+            <p>14:33 – Cartão debitado</p>
+          </div>
+        </div>
+        <div class="step atual">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8h1a4 4 0 010 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <div class="step-texto">
+            <h4>Em Preparo</h4>
+            <p>Cozinha preparando seu pedido...</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </div>
+          <div class="step-texto">
+            <h4>Pronto para Retirada</h4>
+            <p>Aguardando...</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="step-texto">
+            <h4>Pedido Retirado</h4>
+            <p>Bom apetite!</p>
+          </div>
+        </div>
+      </div>
+      <div class="eta-box">⏱ Tempo estimado: <strong>12 minutos</strong></div>
+      <button class="btn-secundario" style="width:100%;margin-top:14px;padding:12px;" onclick="simularAvanco()">Simular próxima etapa →</button>
+    </div>
+  </div>
+  
+  <!-- ===== TELA 5: FIDELIDADE ===== -->
+  <div id="tela-fidelidade" class="tela">
+    <div class="fidelidade-header">
+      <h2> Programa Fidelidade</h2>
+      <p style="opacity:.8;margin-bottom:10px;">Acumule pontos e troque por recompensas!</p>
+      <div class="pontos-big">620</div>
+      <div class="pontos-label">pontos acumulados</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <p style="font-size:0.8rem;opacity:.75;">380 pontos para a próxima recompensa</p>
+    </div>
+    <h3 style="font-family:'Playfair Display',serif;color:var(--verde);margin-bottom:14px;">Recompensas Disponíveis</h3>
+    <div class="fidelidade-cards">
+      <div class="recompensa-card" onclick="resgatar(this,'Suco Grátis')">
+        <div class="recompensa-icon"></div>
+        <h4>Suco Grátis</h4>
+        <div class="pts">500 pts </div>
+      </div>
+      <div class="recompensa-card" onclick="resgatar(this,'Desconto 10%')">
+        <div class="recompensa-icon"></div>
+        <h4>Desconto 10%</h4>
+        <div class="pts">600 pts </div>
+      </div>
+      <div class="recompensa-card bloqueado">
+        <div class="recompensa-icon"></div>
+        <h4>Lanche Grátis</h4>
+        <div class="pts">1000 pts </div>
+      </div>
+      <div class="recompensa-card bloqueado">
+        <div class="recompensa-icon"></div>
+        <h4>Kit Nordestino</h4>
+        <div class="pts">2000 pts </div>
+      </div>
+    </div>
+    <div class="historico">
+      <h3>Histórico de Pontos</h3>
+      <div class="hist-item">
+        <div><strong>Pedido #RDN-20483</strong><br>
+          <span style="font-size:.78rem;color:var(--cinza);">18/04/2026</span></div>
+        <div class="pontos-ganhos">+ 50 pts</div>
+      </div>
+      <div class="hist-item">
+        <div><strong>Pedido #RDN-20401</strong><br>
+          <span style="font-size:.78rem;color:var(--cinza);">15/04/2026</span></div>
+        <div class="pontos-ganhos">+ 80 pts</div>
+      </div>
+      <div class="hist-item">
+        <div><strong>Resgate – Suco Grátis</strong><br>
+          <span style="font-size:.78rem;color:var(--cinza);">10/04/2026</span></div>
+        <div style="color:var(--vermelho);font-weight:700;">- 500 pts</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ===== TELA 6: TOTEM ===== -->
+  <div id="tela-totem" class="tela"> 
+    
+    <!-- Barra topo escura -->
+    <div class="totem-topbar">
+      <div class="t-logo"> Raízes</div>
+      <div class="totem-nav-pills">
+        <button class="t-pill t-ativa" onclick="irTotem('home')">Início</button>
+        <button class="t-pill" onclick="irTotem('cardapio')"> Cardápio</button>
+        <button class="t-pill" onclick="irTotem('pedido')"> Pedido</button>
+        <button class="t-pill" onclick="irTotem('status')"> Status</button>
+        <button class="t-pill" onclick="irTotem('fidelidade')"> Fidelidade</button>
+        <button class="t-pill" onclick="sairDoTotem()" style="background:rgba(192,57,43,0.35);color:#ffaaaa;border:1px solid rgba(192,57,43,0.5);" title="Voltar para versão web/mobile">↩ Sair do Totem</button>
+      </div>
+    </div>
+    
+    <!-- SUB-TELA: HOME -->
+    <div id="t-home" class="totem-subtela t-visivel">
+      <div class="totem-home-hero">
+        <h2>Bem-vindo ao Totem!</h2>
+        <p>Autoatendimento rápido e fácil. Toque para começar.</p>
+        <div class="totem-home-grid">
+          <div class="t-home-card" onclick="irTotem('cardapio')">
+            <div class="t-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 010 8h-1"/>
+                <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+                <line x1="6" y1="1" x2="6" y2="4"/>
+                <line x1="10" y1="1" x2="10" y2="4"/>
+                <line x1="14" y1="1" x2="14" y2="4"/>
+              </svg>
+            </div>
+            <h3>Novo Pedido</h3>
+            <p>Ver cardápio e pedir</p>
+          </div>
+          <div class="t-home-card" onclick="irTotem('status')">
+            <div class="t-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3>Meu Pedido</h3>
+            <p>Acompanhar status</p>
+          </div>
+          <div class="t-home-card" onclick="irTotem('fidelidade')">
+            <div class="t-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <h3>Fidelidade</h3>
+            <p>Pontos e recompensas</p>
+          </div>
+          <div class="t-home-card" onclick="toastMsg(' Atendente chamado! Aguarde.')">
+            <div class="t-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <h3>Ajuda</h3>
+            <p>Chamar atendente</p>
+          </div>
+        </div>
+        <div class="totem-lgpd-aviso"> Nenhum dado pessoal é armazenado neste terminal. LGPD Art. 7º. </div>
+      </div>
+    </div>
+    
+    <!-- SUB-TELA: CARDÁPIO -->
+    <div id="t-cardapio" class="totem-subtela">
+      <h2 class="t-titulo">Cardápio</h2>
+      <p class="t-sub">Unidade: Fortaleza – Centro</p>
+      <div style="background:linear-gradient(120deg,var(--laranja),var(--amarelo));border-radius:12px;padding:13px 18px;color:var(--texto);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;"> Combo Nordestino com 20% OFF hoje! <span style="background:var(--vermelho);color:#fff;padding:3px 9px;border-radius:16px;font-size:.75rem;">PROMO</span> </div>
+      <div class="t-categoria"> Lanches</div>
+      <div class="t-cardapio-grid">
+        <div class="t-produto">
+          <div class="t-prod-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="13" rx="9" ry="5"/>
+              <path d="M3 13c0-3 4-7 9-7s9 4 9 7"/>
+              <line x1="8" y1="9" x2="8" y2="17"/>
+              <line x1="12" y1="7" x2="12" y2="18"/>
+              <line x1="16" y1="9" x2="16" y2="17"/>
+            </svg>
+          </div>
+          <div class="t-prod-info">
+            <div class="t-prod-nome">Tapioca da Serra</div>
+            <div class="t-prod-preco">R$ 14,90</div>
+            <button class="t-prod-add" onclick="tAddCarrinho('Tapioca da Serra',14.90)">+ Adicionar</button>
+          </div>
+        </div>
+        <div class="t-produto">
+          <div class="t-prod-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 13h16"/>
+              <path d="M4 17h16"/>
+              <path d="M6 9c0-2.2 2.7-4 6-4s6 1.8 6 4H6z"/>
+              <rect x="3" y="17" width="18" height="3" rx="1.5"/>
+            </svg>
+          </div>
+          <div class="t-prod-info">
+            <div class="t-prod-nome">Baião Burger</div>
+            <div class="t-prod-preco">R$ 22,90</div>
+            <button class="t-prod-add" onclick="tAddCarrinho('Baião Burger',22.90)">+ Adicionar</button>
+          </div>
+        </div>
+        <div class="t-produto">
+          <div class="t-prod-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3C7 3 4 7 4 12l4 9h8l4-9c0-5-3-9-8-9z"/>
+              <line x1="8" y1="12" x2="16" y2="12"/>
+              <line x1="9" y1="9" x2="15" y2="9"/>
+            </svg>
+          </div>
+          <div class="t-prod-info">
+            <div class="t-prod-nome">Carne de Sol Wrap</div>
+            <div class="t-prod-preco">R$ 19,90</div>
+            <button class="t-prod-add" onclick="tAddCarrinho('Carne de Sol Wrap',19.90)">+ Adicionar</button>
+          </div>
+        </div>
+        <div class="t-produto">
+          <div class="t-prod-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="11" width="14" height="8" rx="2"/>
+              <path d="M7 11V8a2 2 0 114 0v3"/>
+              <path d="M13 11V7a2 2 0 114 0v4"/>
+              <line x1="9" y1="15" x2="9" y2="17"/>
+              <line x1="12" y1="15" x2="12" y2="17"/>
+              <line x1="15" y1="15" x2="15" y2="17"/>
+            </svg>
+          </div>
+          <div class="t-prod-info">
+            <div class="t-prod-nome">Macaxeira Frita</div>
+            <div class="t-prod-preco">R$ 11,90</div>
+            <button class="t-prod-add" onclick="tAddCarrinho('Macaxeira Frita',11.90)">+ Adicionar</button>
+          </div>
+        </div>
+      </div>
+      <div class="t-categoria"> Bebidas</div>
+      <div class="t-cardapio-grid">
+        <div class="t-produto">
+          <div class="t-prod-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2h8l1 6H7L8 2z"/>
+              <path d="M7 8l1 13h8l1-13"/>
+              <line x1="10" y1="12" x2="14" y2="12"/>
+            </svg>
+          </div>
+          <div class="t-prod-info">
+            <div class="t-prod-nome">Suco de Umbú</div>
+            <div class="t-prod-preco">R$ 8,90</div>
+            <button class="t-prod-add" onclick="tAddCarrinho('Suco de Umbú',8.90)">+ Adicionar</button>
+          </div>
+        </div>
+        <div class="t-produto">
+          <div class="t-prod-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-1 3-4 4-4 8a4 4 0 008 0c0-4-3-5-4-8z"/>
+              <line x1="12" y1="14" x2="12" y2="22"/>
+              <line x1="9" y1="22" x2="15" y2="22"/>
+            </svg>
+          </div>
+          <div class="t-prod-info">
+            <div class="t-prod-nome">Água de Coco</div>
+            <div class="t-prod-preco">R$ 7,90</div>
+            <button class="t-prod-add" onclick="tAddCarrinho('Água de Coco',7.90)">+ Adicionar</button>
+          </div>
+        </div>
+      </div>
+      <div class="t-carrinho-float" onclick="irTotem('pedido')"> <span> Ver pedido</span> <span id="t-badge">0 itens · R$ 0,00</span> </div>
+    </div>
+    
+    <!-- SUB-TELA: PEDIDO -->
+    <div id="t-pedido" class="totem-subtela">
+      <h2 class="t-titulo">Seu Pedido</h2>
+      <p class="t-sub">Revise antes de confirmar.</p>
+      <div id="t-pedido-lista">
+        <p style="color:rgba(255,255,255,0.45);text-align:center;padding:20px;"> Nenhum item. <span style="color:var(--amarelo);cursor:pointer;" onclick="irTotem('cardapio')">Ver cardápio →</span> </p>
+      </div>
+      <div id="t-resumo-wrap" style="display:none;">
+        <div class="t-resumo">
+          <div class="linha"><span>Subtotal</span><span id="t-sub">R$ 0,00</span></div>
+          <div class="linha"><span>Taxa de serviço</span><span>R$ 0,00</span></div>
+          <div class="linha"><span>Desconto fidelidade</span><span style="color:var(--verde-claro);">- R$ 5,00</span></div>
+          <div class="linha total"><span>Total</span><span id="t-total">R$ 0,00</span></div>
+        </div>
+        <p style="color:rgba(255,255,255,0.7);font-weight:700;margin-bottom:10px;">Forma de pagamento:</p>
+        <div class="t-pag-grid">
+          <button class="t-pag-btn sel" onclick="tSelPag(this)"> Cartão</button>
+          <button class="t-pag-btn" onclick="tSelPag(this)"> Pix</button>
+          <button class="t-pag-btn" onclick="tSelPag(this)"> Dinheiro</button>
+          <button class="t-pag-btn" onclick="tSelPag(this)"> VR/VA</button>
+        </div>
+        <button class="t-btn-confirmar" onclick="tProcessarPag()"> Confirmar e Pagar</button>
+        <p style="font-size:.75rem;color:rgba(255,255,255,0.4);text-align:center;margin-top:8px;">Gateway externo seguro · PCI-DSS</p>
+      </div>
+    </div>
+    
+    <!-- SUB-TELA: STATUS -->
+    <div id="t-status" class="totem-subtela">
+      <h2 class="t-titulo">Status do Pedido</h2>
+      <div class="t-status-card">
+        <p style="color:rgba(255,255,255,0.5);font-size:.82rem;margin-bottom:6px;">Pedido <strong style="color:var(--amarelo);">#RDN-20483</strong> · Fortaleza – Centro</p>
+        <div style="position:relative;margin:20px 0;">
+          <div style="position:absolute;left:17px;top:18px;bottom:18px;width:3px;background:rgba(255,255,255,0.1);z-index:0;"></div>
+          <div id="t-prog-fill" style="position:absolute;left:17px;top:18px;width:3px;background:var(--verde-claro);z-index:1;height:55%;transition:height 0.8s;"></div>
+          <div class="t-step done" style="position:relative;z-index:2;">
+            <div class="t-step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <polyline points="9 13 11 15 15 11"/>
+              </svg>
+            </div>
+            <div class="t-step-texto">
+              <h4>Pedido Recebido</h4>
+              <p>14:32 – Confirmado</p>
+            </div>
+          </div>
+          <div class="t-step done" style="position:relative;z-index:2;">
+            <div class="t-step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="4" width="22" height="16" rx="2"/>
+                <line x1="1" y1="10" x2="23" y2="10"/>
+              </svg>
+            </div>
+            <div class="t-step-texto">
+              <h4>Pagamento Aprovado</h4>
+              <p>14:33 – Aprovado</p>
+            </div>
+          </div>
+          <div class="t-step atual" id="t-step2" style="position:relative;z-index:2;">
+            <div class="t-step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 010 8h-1"/>
+                <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+                <line x1="6" y1="1" x2="6" y2="4"/>
+                <line x1="10" y1="1" x2="10" y2="4"/>
+                <line x1="14" y1="1" x2="14" y2="4"/>
+              </svg>
+            </div>
+            <div class="t-step-texto">
+              <h4>Em Preparo</h4>
+              <p>Cozinha preparando...</p>
+            </div>
+          </div>
+          <div class="t-step" id="t-step3" style="position:relative;z-index:2;">
+            <div class="t-step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+            </div>
+            <div class="t-step-texto">
+              <h4>Pronto para Retirada</h4>
+              <p>Aguardando...</p>
+            </div>
+          </div>
+          <div class="t-step" id="t-step4" style="position:relative;z-index:2;">
+            <div class="t-step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="t-step-texto">
+              <h4>Pedido Retirado</h4>
+              <p>Bom apetite!</p>
+            </div>
+          </div>
+        </div>
+        <div class="t-eta">⏱ Tempo estimado: <strong>12 minutos</strong></div>
+        <button class="t-btn-confirmar" style="margin-top:14px;" onclick="tSimularAvanco()">Simular próxima etapa →</button>
+      </div>
+    </div>
+    
+    <!-- SUB-TELA: FIDELIDADE -->
+    <div id="t-fidelidade" class="totem-subtela">
+      <div class="t-fid-header">
+        <h2> Programa Fidelidade</h2>
+        <p style="opacity:.75;margin-bottom:10px;font-size:.88rem;">Acumule pontos a cada pedido!</p>
+        <div class="t-pontos-big">620</div>
+        <div style="font-size:.82rem;opacity:.7;">pontos acumulados</div>
+        <div class="t-progress-bar-wrap">
+          <div class="t-progress-bar-fill"></div>
+        </div>
+        <p style="font-size:.78rem;opacity:.65;">380 pontos para a próxima recompensa</p>
+      </div>
+      <h3 style="color:var(--amarelo);font-family:'Playfair Display',serif;margin-bottom:12px;">Recompensas</h3>
+      <div class="t-recomp-grid">
+        <div class="t-recomp-card" onclick="tResgatar(this,'Suco Grátis')">
+          <div class="t-icon"></div>
+          <h4>Suco Grátis</h4>
+          <div class="pts">500 pts </div>
+        </div>
+        <div class="t-recomp-card" onclick="tResgatar(this,'Desconto 10%')">
+          <div class="t-icon"></div>
+          <h4>Desconto 10%</h4>
+          <div class="pts">600 pts </div>
+        </div>
+        <div class="t-recomp-card bloqueado">
+          <div class="t-icon"></div>
+          <h4>Lanche Grátis</h4>
+          <div class="pts">1000 pts </div>
+        </div>
+        <div class="t-recomp-card bloqueado">
+          <div class="t-icon"></div>
+          <h4>Kit Nordestino</h4>
+          <div class="pts">2000 pts </div>
+        </div>
+      </div>
+      <h3 style="color:var(--amarelo);font-family:'Playfair Display',serif;margin:20px 0 12px;">Histórico</h3>
+      <div class="t-hist-item">
+        <div><strong>Pedido #RDN-20483</strong><br>
+          <span style="font-size:.75rem;opacity:.55;">18/04/2026</span></div>
+        <span style="color:var(--verde-claro);font-weight:700;">+ 50 pts</span> </div>
+      <div class="t-hist-item">
+        <div><strong>Pedido #RDN-20401</strong><br>
+          <span style="font-size:.75rem;opacity:.55;">15/04/2026</span></div>
+        <span style="color:var(--verde-claro);font-weight:700;">+ 80 pts</span> </div>
+      <div class="t-hist-item">
+        <div><strong>Resgate – Suco Grátis</strong><br>
+          <span style="font-size:.75rem;opacity:.55;">10/04/2026</span></div>
+        <span style="color:var(--vermelho);font-weight:700;">- 500 pts</span> </div>
+    </div>
+  </div>
+</div>
+<!-- fim app-container --> 
+
+<!-- ===== MODAL LGPD ===== -->
+<div class="modal-overlay" id="modal-lgpd">
+  <div class="modal-box">
+    <h2> Consentimento LGPD</h2>
+    <p><strong>Por que coletamos seus dados?</strong></p>
+    <p>De acordo com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), informamos que seus dados pessoais (nome, e-mail, CPF e telefone) serão usados exclusivamente para:</p>
+    <p>• Gerenciar sua conta e pedidos<br>
+      • Operação do programa de fidelidade<br>
+      • Comunicação sobre status de pedidos</p>
+    <p>Você pode solicitar a exclusão dos seus dados a qualquer momento pelo e-mail <strong>privacidade@raizesnordeste.com.br</strong>.</p>
+    <div class="modal-btns">
+      <button class="btn-recusar" onclick="fecharModal('modal-lgpd')">Recusar</button>
+      <button class="btn-aceitar" onclick="aceitarLGPD()">Aceitar e Cadastrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL POLÍTICA DE PRIVACIDADE ===== -->
+<div class="modal-overlay" id="modal-privacidade">
+  <div class="modal-box" style="max-width:560px;max-height:85vh;overflow-y:auto;">
+    <h2> Política de Privacidade</h2>
+    <p><strong>Raízes do Nordeste Alimentação Ltda.</strong> — CNPJ 00.000.000/0001-00<br>
+      Última atualização: junho de 2025</p>
+    <p><strong>1. Responsável pelo tratamento</strong><br>
+      A Raízes do Nordeste é a controladora dos dados pessoais coletados por meio deste aplicativo, responsável por definir as finalidades e os meios de tratamento, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).</p>
+    <p><strong>2. Dados coletados</strong><br>
+      Coletamos nome completo, e-mail, CPF, número de telefone e histórico de pedidos. Dados de pagamento são processados diretamente por gateway certificado PCI-DSS e não ficam armazenados em nossos servidores.</p>
+    <p><strong>3. Finalidade do tratamento</strong><br>
+      Seus dados são utilizados exclusivamente para: criação e gestão de conta; processamento e acompanhamento de pedidos; operação do programa de fidelidade; envio de comunicações transacionais (confirmação de pedido, status de preparo); e envio de promoções, apenas mediante consentimento expresso e separado.</p>
+    <p><strong>4. Base legal</strong><br>
+      O tratamento ocorre com fundamento no consentimento do titular (art. 7º, I, LGPD), na execução de contrato (art. 7º, V) e no legítimo interesse do controlador para fins de segurança e prevenção a fraudes (art. 7º, IX).</p>
+    <p><strong>5. Compartilhamento de dados</strong><br>
+      Não vendemos nem cedemos seus dados a terceiros para fins comerciais. Compartilhamos informações estritamente necessárias com operadores contratados (gateway de pagamento, plataforma de disparo de e-mail), todos obrigados contratualmente a manter a confidencialidade e a cumprir a LGPD.</p>
+    <p><strong>6. Retenção</strong><br>
+      Os dados são mantidos pelo período necessário à execução dos serviços e, após o encerramento da conta, pelo prazo legal aplicável (até 5 anos para fins fiscais e contábeis). Dados de consentimento de marketing são excluídos imediatamente após a revogação.</p>
+    <p><strong>7. Direitos do titular</strong><br>
+      Nos termos dos arts. 17 a 22 da LGPD, você pode a qualquer momento: confirmar a existência de tratamento; acessar, corrigir ou solicitar a portabilidade dos seus dados; revogar o consentimento; solicitar a exclusão dos dados tratados com base em consentimento; e opor-se a tratamentos realizados com base em legítimo interesse.</p>
+    <p><strong>8. Como exercer seus direitos</strong><br>
+      Entre em contato com nosso Encarregado de Proteção de Dados (DPO) pelo e-mail <strong>privacidade@raizesnordeste.com.br</strong> ou pelo formulário disponível no aplicativo. Responderemos em até 15 dias corridos.</p>
+    <p><strong>9. Segurança</strong><br>
+      Adotamos medidas técnicas e organizacionais adequadas — incluindo criptografia em trânsito (TLS) e controle de acesso baseado em função — para proteger seus dados contra acesso não autorizado, perda ou destruição.</p>
+    <p><strong>10. Alterações nesta política</strong><br>
+      Eventuais atualizações serão comunicadas por e-mail e/ou notificação no aplicativo com antecedência mínima de 10 dias. O uso continuado após a data de vigência implica aceite das novas condições.</p>
+    <div class="modal-btns">
+      <button class="btn-aceitar" onclick="fecharModal('modal-privacidade')" style="max-width:200px;">Entendi</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL PAGAMENTO ===== -->
+<div class="modal-overlay" id="modal-pag">
+  <div class="modal-box" style="text-align:center;">
+    <div class="modal-pag-status" id="pag-processando">
+      <div class="spinner"></div>
+      <h2>Processando Pagamento...</h2>
+      <p>Enviando para o gateway externo (PCI-DSS). Aguarde.</p>
+    </div>
+    <div class="modal-pag-status" id="pag-sucesso" style="display:none;">
+      <div class="sucesso-icon"></div>
+      <h2 style="color:var(--verde);">Pedido Confirmado!</h2>
+      <p>Seu pedido <strong>#RDN-20483</strong> foi recebido com sucesso.</p>
+      <p style="margin-top:8px;font-size:0.85rem;color:var(--cinza);">Você ganhou <strong>50 pontos</strong> de fidelidade!</p>
+      <button class="btn-primario" style="margin-top:20px;" onclick="fecharModal('modal-pag');irPara('status')">Acompanhar Pedido</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+<script src="js/script.js"></script>
+</body>
+</html>
