@@ -4,7 +4,7 @@
  let statusAtual = 2; // 0-based index
  let pontosAcumulados = 620; // pontos iniciais do programa de fidelidade
 
- // ===== NAVEGAÇÃO =====
+ // ===== NAVEGAÃ‡ÃƒO =====
  function irPara(id) {
      document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
      document.getElementById('tela-' + id).classList.add('ativa');
@@ -26,100 +26,100 @@
  }
 
 
- // ===== CARDÁPIOS POR UNIDADE =====
+ // ===== CARDÃPIOS POR UNIDADE =====
  const cardapios = {
-   'Fortaleza – Centro': {
+   'Fortaleza â€“ Centro': {
      promo: 'Combo Nordestino com 20% OFF hoje!',
      categorias: [
        {
          nome: 'Lanches',
-         icone: '🥙',
+         icone: '',
          produtos: [
            { nome: 'Tapioca da Serra',   preco: 14.90, svg: 'tapioca'  },
-           { nome: 'Baião Burger',        preco: 22.90, svg: 'burger'   },
+           { nome: 'BaiÃ£o Burger',        preco: 22.90, svg: 'burger'   },
            { nome: 'Carne de Sol Wrap',   preco: 19.90, svg: 'wrap'     },
            { nome: 'Macaxeira Frita',     preco: 11.90, svg: 'macaxeira'},
          ]
        },
        {
          nome: 'Bebidas',
-         icone: '🥤',
+         icone: '',
          produtos: [
-           { nome: 'Suco de Umbú',  preco: 8.90, svg: 'suco' },
-           { nome: 'Água de Coco',  preco: 7.90, svg: 'coco' },
-           { nome: 'Cajuína',       preco: 6.90, svg: 'cajuina' },
+           { nome: 'Suco de UmbÃº',  preco: 8.90, svg: 'suco' },
+           { nome: 'Ãgua de Coco',  preco: 7.90, svg: 'coco' },
+           { nome: 'CajuÃ­na',       preco: 6.90, svg: 'cajuina' },
          ]
        }
      ]
    },
-   'Recife – Boa Viagem': {
-     promo: 'Moqueca do Chef com 15% OFF no almoço!',
+   'Recife â€“ Boa Viagem': {
+     promo: 'Moqueca do Chef com 15% OFF no almoÃ§o!',
      categorias: [
        {
          nome: 'Pratos',
-         icone: '🍲',
+         icone: '',
          produtos: [
            { nome: 'Moqueca de Peixe',    preco: 32.90, svg: 'moqueca'  },
-           { nome: 'Baião de Dois',        preco: 24.90, svg: 'baiao'    },
-           { nome: 'Acarajé Recifense',    preco: 17.90, svg: 'acaraje'  },
+           { nome: 'BaiÃ£o de Dois',        preco: 24.90, svg: 'baiao'    },
+           { nome: 'AcarajÃ© Recifense',    preco: 17.90, svg: 'acaraje'  },
            { nome: 'Xinxim de Galinha',    preco: 28.90, svg: 'xinxim'   },
          ]
        },
        {
          nome: 'Bebidas',
-         icone: '🥤',
+         icone: '',
          produtos: [
-           { nome: 'Suco de Maracujá', preco: 9.90, svg: 'suco' },
-           { nome: 'Água de Coco',     preco: 7.90, svg: 'coco' },
+           { nome: 'Suco de MaracujÃ¡', preco: 9.90, svg: 'suco' },
+           { nome: 'Ãgua de Coco',     preco: 7.90, svg: 'coco' },
            { nome: 'Caldo de Cana',    preco: 8.50, svg: 'caldo' },
          ]
        }
      ]
    },
-   'Salvador – Barra': {
-     promo: 'Acarajé + Bebida por R$ 22,00!',
+   'Salvador â€“ Barra': {
+     promo: 'AcarajÃ© + Bebida por R$ 22,00!',
      categorias: [
        {
          nome: 'Lanches & Pratos',
-         icone: '🍛',
+         icone: '',
          produtos: [
-           { nome: 'Acarajé da Barra',   preco: 16.90, svg: 'acaraje'   },
+           { nome: 'AcarajÃ© da Barra',   preco: 16.90, svg: 'acaraje'   },
            { nome: 'Moqueca Baiana',      preco: 34.90, svg: 'moqueca'   },
-           { nome: 'Vatapá no Pão',       preco: 14.90, svg: 'wrap'      },
+           { nome: 'VatapÃ¡ no PÃ£o',       preco: 14.90, svg: 'wrap'      },
            { nome: 'Sarapatel Soterop.',  preco: 26.90, svg: 'sarapatel' },
          ]
        },
        {
          nome: 'Bebidas',
-         icone: '🥤',
+         icone: '',
          produtos: [
            { nome: 'Suco de Acerola', preco: 8.90, svg: 'suco'      },
-           { nome: 'Água de Coco',    preco: 7.90, svg: 'coco'      },
+           { nome: 'Ãgua de Coco',    preco: 7.90, svg: 'coco'      },
            { nome: 'Tamarindo Gelado',preco: 7.50, svg: 'tamarindo' },
          ]
        }
      ]
    },
-   'João Pessoa': {
+   'JoÃ£o Pessoa': {
      promo: 'Tapioca recheada com 10% OFF hoje!',
      categorias: [
        {
          nome: 'Lanches',
-         icone: '🥙',
+         icone: '',
          produtos: [
            { nome: 'Tapioca Recheada',    preco: 15.90, svg: 'tapioca'   },
            { nome: 'Carne de Sol Wrap',   preco: 18.90, svg: 'wrap'      },
            { nome: 'Macaxeira Assada',    preco: 12.90, svg: 'macaxeira' },
-           { nome: 'Baião Burger Paraíba',preco: 21.90, svg: 'burger'    },
+           { nome: 'BaiÃ£o Burger ParaÃ­ba',preco: 21.90, svg: 'burger'    },
          ]
        },
        {
          nome: 'Bebidas',
-         icone: '🥤',
+         icone: '',
          produtos: [
-           { nome: 'Suco de Umbú',    preco: 8.90, svg: 'umbu'    },
-           { nome: 'Cajuína Gelada',  preco: 7.50, svg: 'cajuina' },
-           { nome: 'Água de Coco',    preco: 7.90, svg: 'coco'    },
+           { nome: 'Suco de UmbÃº',    preco: 8.90, svg: 'umbu'    },
+           { nome: 'CajuÃ­na Gelada',  preco: 7.50, svg: 'cajuina' },
+           { nome: 'Ãgua de Coco',    preco: 7.90, svg: 'coco'    },
          ]
        }
      ]
@@ -145,14 +145,14 @@
  };
 
  // ===== UNIDADE =====
- let unidadeAtual = 'Fortaleza – Centro';
+ let unidadeAtual = 'Fortaleza â€“ Centro';
 
  function selUnidade(btn) {
      document.querySelectorAll('.unidade-btn').forEach(b => b.classList.remove('sel'));
      btn.classList.add('sel');
      unidadeAtual = btn.textContent.trim();
      renderCardapio(unidadeAtual);
-     toastMsg('Cardápio carregado: ' + unidadeAtual);
+     toastMsg('CardÃ¡pio carregado: ' + unidadeAtual);
  }
 
  function renderCardapio(unidade) {
@@ -198,7 +198,7 @@
  function atualizarBadge() {
      const total = carrinho.reduce((s, i) => s + i.preco * i.qtd, 0);
      const qtd = carrinho.reduce((s, i) => s + i.qtd, 0);
-     document.getElementById('badge-qtd').textContent = qtd + ' ' + (qtd === 1 ? 'item' : 'itens') + ' · R$ ' + total.toFixed(2).replace('.', ',');
+     document.getElementById('badge-qtd').textContent = qtd + ' ' + (qtd === 1 ? 'item' : 'itens') + ' Â· R$ ' + total.toFixed(2).replace('.', ',');
  }
 
  function renderPedido() {
@@ -207,7 +207,7 @@
      const pagWrap = document.getElementById('forma-pag-wrap');
 
      if (carrinho.length === 0) {
-         lista.innerHTML = '<p style="color:var(--cinza);text-align:center;padding:20px;">Nenhum item. <a href="#" onclick="irPara(\'cardapio\')" style="color:var(--verde);">Ver cardápio</a></p>';
+         lista.innerHTML = '<p style="color:var(--cinza);text-align:center;padding:20px;">Nenhum item. <a href="#" onclick="irPara(\'cardapio\')" style="color:var(--verde);">Ver cardÃ¡pio</a></p>';
          resumo.style.display = 'none';
          pagWrap.style.display = 'none';
          return;
@@ -220,7 +220,7 @@
  <div style="font-size:.82rem;color:var(--cinza);">R$ ${item.preco.toFixed(2).replace('.',',')} cada</div>
  </div>
  <div class="qtd-ctrl">
- <button class="qtd-btn" onclick="mudarQtd(${idx}, -1)">−</button>
+ <button class="qtd-btn" onclick="mudarQtd(${idx}, -1)">âˆ’</button>
  <span style="font-weight:700;">${item.qtd}</span>
  <button class="qtd-btn" onclick="mudarQtd(${idx}, 1)">+</button>
  </div>
@@ -309,7 +309,7 @@
          // Atualiza texto do modal com os pontos ganhos neste pedido
          const msgPontos = document.getElementById('msg-pontos-ganhos');
          if (msgPontos) {
-             msgPontos.innerHTML = 'Você ganhou <strong>' + pontosGanhos + ' ponto' + (pontosGanhos !== 1 ? 's' : '') + '</strong> de fidelidade! Total acumulado: <strong>' + pontosAcumulados + ' pts</strong>';
+             msgPontos.innerHTML = 'VocÃª ganhou <strong>' + pontosGanhos + ' ponto' + (pontosGanhos !== 1 ? 's' : '') + '</strong> de fidelidade! Total acumulado: <strong>' + pontosAcumulados + ' pts</strong>';
          }
          document.getElementById('pag-processando').style.display = 'none';
          document.getElementById('pag-sucesso').style.display = 'block';
@@ -322,22 +322,22 @@
  const stepsData = [{
          icon: '',
          titulo: 'Pedido Recebido',
-         sub: '14:32 – Confirmado'
+         sub: '14:32 â€“ Confirmado'
      },
      {
          icon: '',
          titulo: 'Pagamento Aprovado',
-         sub: '14:33 – Aprovado'
+         sub: '14:33 â€“ Aprovado'
      },
      {
-         icon: '‍',
+         icon: 'â€',
          titulo: 'Em Preparo',
          sub: 'Cozinha trabalhando...'
      },
      {
          icon: '',
          titulo: 'Pronto para Retirada',
-         sub: 'Vá ao balcão!'
+         sub: 'VÃ¡ ao balcÃ£o!'
      },
      {
          icon: '',
@@ -348,7 +348,7 @@
 
  function simularAvanco() {
      if (statusAtual >= 4) {
-         toastMsg('Pedido já finalizado! ');
+         toastMsg('Pedido jÃ¡ finalizado! ');
          return;
      }
      statusAtual++;
@@ -381,22 +381,22 @@
      document.getElementById('modal-privacidade').classList.add('aberto');
  }
 
- // ===== VALIDAÇÃO LOGIN =====
+ // ===== VALIDAÃ‡ÃƒO LOGIN =====
  function tentarLogin() {
      let valido = true;
 
      const emailVal = document.getElementById('login-email').value.trim();
      if (!emailVal) {
-         mostrarErroLogin('login-email', 'E-mail é obrigatório.');
+         mostrarErroLogin('login-email', 'E-mail Ã© obrigatÃ³rio.');
          valido = false;
      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailVal)) {
-         mostrarErroLogin('login-email', 'Informe um e-mail válido. Ex: nome@dominio.com');
+         mostrarErroLogin('login-email', 'Informe um e-mail vÃ¡lido. Ex: nome@dominio.com');
          valido = false;
      }
 
      const senhaVal = document.getElementById('login-senha').value;
      if (!senhaVal) {
-         mostrarErroLogin('login-senha', 'Senha é obrigatória.');
+         mostrarErroLogin('login-senha', 'Senha Ã© obrigatÃ³ria.');
          valido = false;
      }
 
@@ -423,7 +423,7 @@
      });
  }
 
- // ===== VALIDAÇÃO CADASTRO =====
+ // ===== VALIDAÃ‡ÃƒO CADASTRO =====
  const camposCadastro = ['cad-nome', 'cad-email', 'cad-cpf', 'cad-tel', 'cad-senha'];
 
  function mostrarErro(id, msg) {
@@ -473,7 +473,7 @@
      return n.length === 10 || n.length === 11;
  }
 
- // Máscaras automáticas
+ // MÃ¡scaras automÃ¡ticas
  document.getElementById('cad-cpf').addEventListener('input', function() {
      let v = this.value.replace(/\D/g, '').slice(0, 11);
      v = v.replace(/(\d{3})(\d)/, '$1.$2');
@@ -498,43 +498,43 @@
      let valido = true;
 
      if (!document.getElementById('cad-nome').value.trim()) {
-         mostrarErro('cad-nome', 'Nome completo é obrigatório.');
+         mostrarErro('cad-nome', 'Nome completo Ã© obrigatÃ³rio.');
          valido = false;
      }
 
      const emailVal = document.getElementById('cad-email').value.trim();
      if (!emailVal) {
-         mostrarErro('cad-email', 'E-mail é obrigatório.');
+         mostrarErro('cad-email', 'E-mail Ã© obrigatÃ³rio.');
          valido = false;
      } else if (!validarEmail(emailVal)) {
-         mostrarErro('cad-email', 'Informe um e-mail válido. Ex: nome@dominio.com');
+         mostrarErro('cad-email', 'Informe um e-mail vÃ¡lido. Ex: nome@dominio.com');
          valido = false;
      }
 
      const cpfVal = document.getElementById('cad-cpf').value;
      if (!cpfVal.trim()) {
-         mostrarErro('cad-cpf', 'CPF é obrigatório.');
+         mostrarErro('cad-cpf', 'CPF Ã© obrigatÃ³rio.');
          valido = false;
      } else if (!validarCPF(cpfVal)) {
-         mostrarErro('cad-cpf', 'CPF inválido. Informe os 11 dígitos corretamente.');
+         mostrarErro('cad-cpf', 'CPF invÃ¡lido. Informe os 11 dÃ­gitos corretamente.');
          valido = false;
      }
 
      const telVal = document.getElementById('cad-tel').value;
      if (!telVal.trim()) {
-         mostrarErro('cad-tel', 'Telefone é obrigatório.');
+         mostrarErro('cad-tel', 'Telefone Ã© obrigatÃ³rio.');
          valido = false;
      } else if (!validarTelefone(telVal)) {
-         mostrarErro('cad-tel', 'Telefone inválido. Informe DDD + número. Ex: (85) 99999-9999');
+         mostrarErro('cad-tel', 'Telefone invÃ¡lido. Informe DDD + nÃºmero. Ex: (85) 99999-9999');
          valido = false;
      }
 
      const senhaVal = document.getElementById('cad-senha').value;
      if (!senhaVal) {
-         mostrarErro('cad-senha', 'Senha é obrigatória.');
+         mostrarErro('cad-senha', 'Senha Ã© obrigatÃ³ria.');
          valido = false;
      } else if (senhaVal.length < 8) {
-         mostrarErro('cad-senha', 'A senha deve ter no mínimo 8 caracteres.');
+         mostrarErro('cad-senha', 'A senha deve ter no mÃ­nimo 8 caracteres.');
          valido = false;
      }
 
@@ -547,7 +547,7 @@
              erroLgpd.style.cssText = 'color:var(--vermelho);font-size:0.78rem;margin-top:4px;display:block;';
              lgpd.closest('.lgpd-check').appendChild(erroLgpd);
          }
-         erroLgpd.textContent = 'Você precisa aceitar a Política de Privacidade.';
+         erroLgpd.textContent = 'VocÃª precisa aceitar a PolÃ­tica de Privacidade.';
          lgpd.addEventListener('change', () => {
              if (erroLgpd) erroLgpd.textContent = '';
          }, {
@@ -582,12 +582,12 @@
 
  function sairDoTotem() {
      irPara('cardapio');
-     irTotem('home'); // reseta sub-navegação do totem para home
+     irTotem('home'); // reseta sub-navegaÃ§Ã£o do totem para home
  }
 
- // ===== CARDÁPIO TOTEM (fixo em Fortaleza – Centro) =====
+ // ===== CARDÃPIO TOTEM (fixo em Fortaleza â€“ Centro) =====
  function renderCardapioTotem() {
-     const dados = cardapios['Fortaleza – Centro'];
+     const dados = cardapios['Fortaleza â€“ Centro'];
      if (!dados) return;
      const container = document.getElementById('t-cardapio-dinamico');
      if (!container) return;
@@ -613,7 +613,7 @@
      container.innerHTML = html;
  }
 
- // ===== TOTEM – sub-navegação =====
+ // ===== TOTEM â€“ sub-navegaÃ§Ã£o =====
  const tCarrinho = [];
  let tStatusAtual = 2;
 
@@ -649,7 +649,7 @@
      const total = tCarrinho.reduce((s, i) => s + i.preco * i.qtd, 0);
      const qtd = tCarrinho.reduce((s, i) => s + i.qtd, 0);
      const b = document.getElementById('t-badge');
-     if (b) b.textContent = qtd + ' ' + (qtd === 1 ? 'item' : 'itens') + ' · R$ ' + total.toFixed(2).replace('.', ',');
+     if (b) b.textContent = qtd + ' ' + (qtd === 1 ? 'item' : 'itens') + ' Â· R$ ' + total.toFixed(2).replace('.', ',');
  }
 
  function tRenderPedido() {
@@ -657,7 +657,7 @@
      const resumoWrap = document.getElementById('t-resumo-wrap');
      if (!lista) return;
      if (tCarrinho.length === 0) {
-         lista.innerHTML = '<p style="color:rgba(255,255,255,.45);text-align:center;padding:20px;">Nenhum item. <span style="color:var(--amarelo);cursor:pointer;" onclick="irTotem(\'cardapio\')">Ver cardápio →</span></p>';
+         lista.innerHTML = '<p style="color:rgba(255,255,255,.45);text-align:center;padding:20px;">Nenhum item. <span style="color:var(--amarelo);cursor:pointer;" onclick="irTotem(\'cardapio\')">Ver cardÃ¡pio â†’</span></p>';
          resumoWrap.style.display = 'none';
          return;
      }
@@ -668,7 +668,7 @@
  <div class="unitario">R$ ${item.preco.toFixed(2).replace('.',',')} cada</div>
  </div>
  <div class="qtd-ctrl" style="display:flex;gap:8px;align-items:center;">
- <button class="qtd-btn" style="background:rgba(255,255,255,.12);color:#fff;" onclick="tMudarQtd(${idx},-1)">−</button>
+ <button class="qtd-btn" style="background:rgba(255,255,255,.12);color:#fff;" onclick="tMudarQtd(${idx},-1)">âˆ’</button>
  <span style="font-weight:700;color:#fff;">${item.qtd}</span>
  <button class="qtd-btn" style="background:rgba(255,255,255,.12);color:#fff;" onclick="tMudarQtd(${idx},1)">+</button>
  </div>
@@ -739,7 +739,7 @@
          atualizarExibicaoPontos();
          const msgPontos = document.getElementById('msg-pontos-ganhos');
          if (msgPontos) {
-             msgPontos.innerHTML = 'Você ganhou <strong>' + tPontosGanhos + ' ponto' + (tPontosGanhos !== 1 ? 's' : '') + '</strong> de fidelidade! Total acumulado: <strong>' + pontosAcumulados + ' pts</strong>';
+             msgPontos.innerHTML = 'VocÃª ganhou <strong>' + tPontosGanhos + ' ponto' + (tPontosGanhos !== 1 ? 's' : '') + '</strong> de fidelidade! Total acumulado: <strong>' + pontosAcumulados + ' pts</strong>';
          }
          document.getElementById('pag-processando').style.display = 'none';
          document.getElementById('pag-sucesso').style.display = 'block';
@@ -748,10 +748,10 @@
      }, 2800);
  }
 
- // override o botão do modal pra redirecionar ao status do totem
+ // override o botÃ£o do modal pra redirecionar ao status do totem
  document.addEventListener('DOMContentLoaded', () => {
-     // Renderiza cardápios iniciais
-     renderCardapio('Fortaleza – Centro');
+     // Renderiza cardÃ¡pios iniciais
+     renderCardapio('Fortaleza â€“ Centro');
      renderCardapioTotem();
 
      const btnSucesso = document.getElementById('btn-acompanhar');
@@ -769,7 +769,7 @@
 
  function tSimularAvanco() {
      if (tStatusAtual >= 4) {
-         toastMsg(' Pedido já finalizado!');
+         toastMsg(' Pedido jÃ¡ finalizado!');
          return;
      }
      tStatusAtual++;
